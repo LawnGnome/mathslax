@@ -59,7 +59,7 @@ router.post('/typeset', function(req, res) {
   }
   var promiseSuccess = function(mathObjects) {
     var locals = {'mathObjects': mathObjects,
-                  'serverAddress': util.format('http://%s:%s/', SERVER, PORT)};
+                  'serverAddress': util.format('https://%s:%s/', SERVER, PORT)};
     var htmlResult = Jade.renderFile('./views/slack-response.jade', locals);
     res.json({'text' : htmlResult});
     res.end();
@@ -82,7 +82,7 @@ router.post('/slashtypeset', function(req, res) {
   }
   var promiseSuccess = function(mathObjects) {
     var locals = {'mathObjects': mathObjects,
-                  'serverAddress': util.format('http://%s:%s/', SERVER, PORT)};
+                  'serverAddress': util.format('https://%s:%s/', SERVER, PORT)};
     var htmlResult = Jade.renderFile('./views/slack-slash-response.jade', locals);
     res.send(htmlResult);
     res.end();
@@ -104,7 +104,7 @@ app.use('/static', Express.static('static'));
 app.use('/', router);
 
 app.listen(PORT);
-console.log("Mathslax is listening at http://%s:%s/", SERVER, PORT);
+console.log("Mathslax is listening at https://%s:%s/", SERVER, PORT);
 console.log("Make a test request with something like:");
 console.log("curl -v -X POST '%s:%d/typeset' --data " +
             "'{\"text\": \"math! f(x) = x^2/sin(x) * E_0\"}' " +
